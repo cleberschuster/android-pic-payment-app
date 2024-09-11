@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">money transfer</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_pagar">Pagar</string>
+    <string name="title_ajustes">Ajustes</string>
+    <string name="title_login">Login</string>
+    <string name="money_transfer">money transfer</string>
+
+</resources>
