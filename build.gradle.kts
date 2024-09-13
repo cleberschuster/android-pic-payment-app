@@ -4,6 +4,5 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.jetbrains.kotlin.ksp) apply false
     alias(libs.plugins.jetbrains.kotlin.parcelize) apply false
-    alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.androidx.navigation.safe.args) apply false
 }
