@@ -15,7 +15,7 @@ import br.com.schuster.bankdroid.databinding.FragmentLoginBinding
 import br.com.schuster.bankdroid.extension.esconder
 import br.com.schuster.bankdroid.extension.getString
 import br.com.schuster.bankdroid.extension.mostrar
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
@@ -23,7 +23,7 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    private val componentesViewModel: ComponentesViewModel by sharedViewModel()
+    private val componentesViewModel: ComponentesViewModel by activityViewModel()
     private val viewModel: LoginViewModel by viewModel()
 
     override fun onCreateView(

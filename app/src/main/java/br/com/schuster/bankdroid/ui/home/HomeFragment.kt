@@ -17,7 +17,7 @@ import br.com.schuster.bankdroid.extension.desaparecer
 import br.com.schuster.bankdroid.extension.esconder
 import br.com.schuster.bankdroid.extension.formatarMoeda
 import br.com.schuster.bankdroid.extension.mostrar
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val componentesViewModel: ComponentesViewModel by sharedViewModel()
+    private val componentesViewModel: ComponentesViewModel by activityViewModel()
     private val homeViewModel: HomeViewModel by viewModel()
     private val controlador by lazy { findNavController() }
 

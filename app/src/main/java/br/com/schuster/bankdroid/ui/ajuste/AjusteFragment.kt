@@ -9,14 +9,14 @@ import br.com.schuster.bankdroid.Componentes
 import br.com.schuster.bankdroid.ComponentesViewModel
 import br.com.schuster.bankdroid.data.UsuarioLogado
 import br.com.schuster.bankdroid.databinding.FragmentAjusteBinding
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class AjusteFragment : Fragment() {
 
     private var _binding: FragmentAjusteBinding? = null
     private val binding get() = _binding!!
 
-    private val componentesViewModel: ComponentesViewModel by sharedViewModel()
+    private val componentesViewModel: ComponentesViewModel by activityViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -15,7 +15,7 @@ import br.com.schuster.bankdroid.data.Usuario
 import br.com.schuster.bankdroid.data.UsuarioLogado
 import br.com.schuster.bankdroid.databinding.FragmentTransferenciaBinding
 import br.com.schuster.bankdroid.extension.formatar
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Calendar
 
@@ -24,7 +24,7 @@ class TransacaoFragment : Fragment() {
     private var _binding: FragmentTransferenciaBinding? = null
     private val binding get() = _binding!!
 
-    private val componentesViewModel: ComponentesViewModel by sharedViewModel()
+    private val componentesViewModel: ComponentesViewModel by activityViewModel()
     private val transacaoViewModel: TransacaoViewModel by viewModel()
     private val argumentos by navArgs<TransacaoFragmentArgs>()
     private val usuario by lazy { argumentos.usuario }

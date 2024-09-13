@@ -12,7 +12,7 @@ import br.com.schuster.bankdroid.data.Usuario
 import br.com.schuster.bankdroid.databinding.FragmentPagarBinding
 import br.com.schuster.bankdroid.extension.desaparecer
 import br.com.schuster.bankdroid.extension.mostrar
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PagarFragment : Fragment() {
@@ -20,7 +20,7 @@ class PagarFragment : Fragment() {
     private var _binding: FragmentPagarBinding? = null
     private val binding get() = _binding!!
 
-    private val componentesViewModel: ComponentesViewModel by sharedViewModel()
+    private val componentesViewModel: ComponentesViewModel by activityViewModel()
     private val pagarViewModel: PagarViewModel by viewModel()
     private val controlador by lazy { findNavController() }
 
