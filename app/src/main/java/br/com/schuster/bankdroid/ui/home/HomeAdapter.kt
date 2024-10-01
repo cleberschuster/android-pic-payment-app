@@ -26,12 +26,15 @@ class HomeAdapter(private val transacoes: List<Transacao> = listOf()) :
     inner class ViewHolder(private val binding: ItemTransacaoBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(transacao: Transacao) {
-            binding.textViewOrigem.text = transacao.origem.nomeCompleto
-            binding.textViewDestino.text = transacao.destino.nomeCompleto
-            binding.textViewValor.text = transacao.valor.formatarMoeda()
-            binding.textViewData.text = transacao.dataHora
-            binding.textViewCirculo.text =
-                transacao.origem.nomeCompleto.first().uppercaseChar().toString()
+            with(binding) {
+                textViewOrigem.text = transacao.origem.nomeCompleto
+                textViewDestino.text = transacao.destino.nomeCompleto
+                textViewValor.text = transacao.valor.formatarMoeda()
+                textViewData.text = transacao.dataHora
+                textViewCirculo.text =
+                    transacao.origem.nomeCompleto.first().uppercaseChar().toString()
+            }
+
         }
     }
 }
