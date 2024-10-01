@@ -10,7 +10,7 @@
         android:id="@+id/TextViewNameAppLogin"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
-        android:text="@string/money_transfer"
+        android:text="@string/pic_payment"
         android:textSize="48sp"
         android:textColor="@android:color/white"
         android:layout_marginTop="64dp"

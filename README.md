@@ -12,3 +12,5 @@ O app segue a arquitetura MVVM e apresenta as seguintes tecnologias:
     Koin;
     Navigation;
     Room.
+
+|<img width="1604" alt="login" src="https://github.com/cleberschuster/android-money-transfer-app/blob/main/screen_login.png">
