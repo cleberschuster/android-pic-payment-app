@@ -3,7 +3,7 @@
 
     <string name="title_home">Home</string>
     <string name="title_pagar">Pagar</string>
-    <string name="title_ajustes">Ajustes</string>
+    <string name="title_perfil">Perfil</string>
     <string name="title_login">Login</string>
     <string name="pic_payment">PicPayment</string>
     <string name="extrato_de_transfer_ncias">Extrato de transferências:</string>

@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/navigation_ajuste"
         android:name="br.com.schuster.bankdroid.ui.ajuste.AjusteFragment"
-        android:label="@string/title_ajustes"
+        android:label="@string/title_perfil"
         tools:layout="@layout/fragment_ajuste" />
     <fragment
         android:id="@+id/navigation_transferencia"
