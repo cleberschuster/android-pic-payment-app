@@ -1,5 +1,5 @@
 
-APP que simula funcionalidades do PicPay para transações financeiras + Jetpack com Kotlin
+App que simula funcionalidades do PicPay para transações financeiras + Jetpack com Kotlin
 
 O app segue a arquitetura MVVM e apresenta as seguintes tecnologias:
 
