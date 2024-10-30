@@ -4,7 +4,7 @@ App que simula funcionalidades do PicPay para transações financeiras + Jetpack
 O app segue a arquitetura MVVM e apresenta as seguintes tecnologias:
 
     Retrofit2;
-        - Cosumo de Apis Rest
+        - Cosumo de APIs Rest
         - Autenticação com JWT Token
     ViewModel;
     LiveData;
