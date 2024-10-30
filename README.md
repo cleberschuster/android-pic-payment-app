@@ -11,7 +11,9 @@ O app segue a arquitetura MVVM e apresenta as seguintes tecnologias:
     Courotines;
     Koin;
     Navigation;
-    Layouts com XML;
+    Layouts com XML.
+
+A API utilizada está no repositório: https://github.com/cicerojmm/picPayCloneMentoriaDIO
 
      A API utilizada está no repositório: https://github.com/cicerojmm/picPayCloneMentoriaDIO 
 
