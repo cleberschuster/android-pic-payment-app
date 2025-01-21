@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import br.com.schuster.bankdroid.Componentes
 import br.com.schuster.bankdroid.ComponentesViewModel
@@ -17,6 +20,7 @@ import br.com.schuster.bankdroid.extension.desaparecer
 import br.com.schuster.bankdroid.extension.esconder
 import br.com.schuster.bankdroid.extension.formatarMoeda
 import br.com.schuster.bankdroid.extension.mostrar
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -60,24 +64,49 @@ class HomeFragment : Fragment() {
 
     private fun observarEstadoTransacoes() {
         homeViewModel.obterHistoricoTransacoes(homeViewModel.login)
-        homeViewModel.transacaoState.observe(viewLifecycleOwner) {
-            when (it) {
-                is State.Loading -> {
-                    mostrarProgresTransacao()
-                }
 
-                is State.Success -> {
-                    esconderProgresTransacao()
-                    configuraRecyclerView(it.data)
-                }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.transacaoState.collect { uiState ->
+                    when (uiState) {
+                        is State.Loading -> {
+                            mostrarProgresTransacao()
+                        }
 
-                is State.Error -> {
-                    esconderProgresTransacao()
-                    configuraRecyclerView(mutableListOf())
-                    Toast.makeText(this.context, it.error.message, Toast.LENGTH_SHORT).show()
+                        is State.Success -> {
+                            esconderProgresTransacao()
+                            configuraRecyclerView(uiState.data)
+                        }
+
+                        is State.Error -> {
+                            esconderProgresTransacao()
+                            configuraRecyclerView(mutableListOf())
+                            Toast.makeText(context, uiState.error.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
             }
         }
+
+//        homeViewModel.obterHistoricoTransacoes(homeViewModel.login)
+//        homeViewModel.transacaoState.observe(viewLifecycleOwner) {
+//            when (it) {
+//                is State.Loading -> {
+//                    mostrarProgresTransacao()
+//                }
+//
+//                is State.Success -> {
+//                    esconderProgresTransacao()
+//                    configuraRecyclerView(it.data)
+//                }
+//
+//                is State.Error -> {
+//                    esconderProgresTransacao()
+//                    configuraRecyclerView(mutableListOf())
+//                    Toast.makeText(this.context, it.error.message, Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
     }
 
     private fun observarEstadoSaldo() {

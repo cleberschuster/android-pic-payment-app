@@ -9,12 +9,15 @@ import br.com.schuster.bankdroid.data.Transacao
 import br.com.schuster.bankdroid.data.UsuarioLogado
 import br.com.schuster.bankdroid.repository.TransacaoRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: TransacaoRepository) : ViewModel() {
 
-    private val _transacaoState = MutableLiveData<State<List<Transacao>>>()
-    val transacaoState: LiveData<State<List<Transacao>>> = _transacaoState
+    private val _transacaoState = MutableStateFlow<State<List<Transacao>>>(State.Loading())
+    val transacaoState = _transacaoState.asStateFlow()
 
     private val _saldoState = MutableLiveData<State<Double>>()
     val saldoState: LiveData<State<Double>> = _saldoState
@@ -29,12 +32,20 @@ class HomeViewModel(private val repository: TransacaoRepository) : ViewModel() {
 
     fun obterHistoricoTransacoes(login: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            _transacaoState.postValue(State.Loading())
+            _transacaoState.update {
+                State.Loading()
+            }
             try {
                 val historico = repository.getTransacoes(login)
-                _transacaoState.postValue(State.Success(historico))
+                _transacaoState.update {
+                    State.Success(historico)
+                }
+
             } catch (e: Exception) {
-                _transacaoState.postValue(State.Error(e))
+                _transacaoState.update {
+                    State.Error(e)
+                }
+
             }
         }
     }
