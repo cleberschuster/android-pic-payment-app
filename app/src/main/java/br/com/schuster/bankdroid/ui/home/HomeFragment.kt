@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import br.com.schuster.bankdroid.Componentes
 import br.com.schuster.bankdroid.ComponentesViewModel
 import br.com.schuster.bankdroid.data.State
+import br.com.schuster.bankdroid.data.Status
 import br.com.schuster.bankdroid.data.Transacao
 import br.com.schuster.bankdroid.data.UsuarioLogado
 import br.com.schuster.bankdroid.databinding.FragmentHomeBinding
@@ -20,6 +21,7 @@ import br.com.schuster.bankdroid.extension.desaparecer
 import br.com.schuster.bankdroid.extension.esconder
 import br.com.schuster.bankdroid.extension.formatarMoeda
 import br.com.schuster.bankdroid.extension.mostrar
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -68,22 +70,42 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.transacaoState.collect { uiState ->
-                    when (uiState) {
-                        is State.Loading -> {
+
+                    when (uiState.status) {
+
+                        Status.LOADING -> {
                             mostrarProgresTransacao()
+                            delay( 2000)
                         }
 
-                        is State.Success -> {
+                        Status.SUCCESS -> {
                             esconderProgresTransacao()
-                            configuraRecyclerView(uiState.data)
+                            uiState.data?.let { configuraRecyclerView(it) }
                         }
 
-                        is State.Error -> {
+                        Status.ERROR -> {
                             esconderProgresTransacao()
                             configuraRecyclerView(mutableListOf())
-                            Toast.makeText(context, uiState.error.message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, uiState.errorMessage, Toast.LENGTH_SHORT).show()
                         }
+
                     }
+//                    when (uiState) {
+//                        is State.Loading -> {
+//                            mostrarProgresTransacao()
+//                        }
+//
+//                        is State.Success -> {
+//                            esconderProgresTransacao()
+//                            configuraRecyclerView(uiState.data)
+//                        }
+//
+//                        is State.Error -> {
+//                            esconderProgresTransacao()
+//                            configuraRecyclerView(mutableListOf())
+//                            Toast.makeText(context, uiState.error.message, Toast.LENGTH_SHORT).show()
+//                        }
+//                    }
                 }
             }
         }
